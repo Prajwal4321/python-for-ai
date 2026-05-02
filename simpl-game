@@ -1,0 +1,56 @@
+import random
+
+# 1. ABSTRACTION & ENCAPSULATION
+class Character:
+    def __init__(self, name, health):
+        self.name = name
+        self.__health = health  # Private: Can't be changed directly from outside
+
+    def is_alive(self):
+        return self.__health > 0
+
+    def take_damage(self, damage):
+        self.__health -= damage
+        print(f"{self.name} took {damage} damage! Remaining Health: {max(0, self.__health)}")
+
+    def get_health(self):
+        return self.__health
+
+# 2. INHERITANCE
+class Hero(Character):
+    def attack(self, target):
+        damage = random.randint(10, 25)
+        print(f"\n {self.name} swings their sword at {target.name}!")
+        target.take_damage(damage)
+
+class Monster(Character):
+    def attack(self, target):
+        damage = random.randint(10, 25)
+        print(f" {self.name} lunges at {target.name}!")
+        target.take_damage(damage)
+
+# --- GAME LOOP ---
+hero_name=input("Enter your hero's name: ")
+if not hero_name:
+    hero_name = "Hero"  # Default name if none provided
+
+player = Hero(hero_name, 100)
+enemy = Monster("Gorgon", 100)
+
+print(f"\n--- Battle Begin: {player.name} vs {enemy.name} ---")
+
+while player.is_alive() and enemy.is_alive():
+    # Player's Turn
+    player.attack(enemy)
+    
+    if not enemy.is_alive():
+        print(f"\n {enemy.name} has been defeated! {player.name} wins!")
+        break
+
+    # Enemy's Turn
+    enemy.attack(player)
+    
+    if not player.is_alive():
+        print(f"\n {player.name} has fallen. Game Over.")
+        break
+    print("-" * 50 ,sep="\n")
