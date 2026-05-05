@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt #for visualization
 import os 
 from datetime import datetime, timedelta
 
-# Calculate dates
+# Calculates the dates
 today = datetime.now()
 week_ago = today - timedelta(days=7)
 # Format dates for API (DD-MM-YYYY)
