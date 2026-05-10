@@ -9,7 +9,7 @@ client = Groq(api_key="your_api_key")
 # 2. History
 messages = [{"role": "system", "content": "You are a helpful assistant."}]
 
-print("--- Free AI Chat Started (Type 'quit' to stop) ---")
+print("----------- (Type 'quit' to stop) -------------")
 
 while True:
     user_input = input("You: ")
